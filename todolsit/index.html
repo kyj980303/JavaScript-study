@@ -4,37 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>자바스크립트를 사용하여 로그인 기능 구현</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/todolist.css">
   </head>
   <body>
-    <form class="hidden" id="login-form">
-      <input required maxlength="15" type="text" placeholder="이름을 입력해주세요">
-      <input type="submit" value="login"></button>
-    </form>
-    <h2 class="clock">00:00:00</h2>
-    <h1 id="greeting" class="hidden"></h1>
-    <form id="todo-form">
-      <input type="text" placeholder="할 일을 입력해주세요" required>
-    </form>
+    <div class="todolist">
+      <div class="quotes hidden">
+        <p class="quotep">[ 오늘의 명언 ]</p>
+        <div class="quote hidden">
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+      <div class="weather">
+        <span></span>
+        <span></span>
+      </div>
 
-    <ul class="todo-list"></ul>
+      <form class="hidden" id="login-form">
+        <div class="login">
+          <div class="clo">
+            <img class="clock" src="./img/clock.png">
+            <p class="clock">00:00:00</p>
+          </div>
+          <img class="loginimg" src="./img/login.png"><br>
+          <span>MAKE TODOLIST ✏️</span>
+          <p><input required maxlength="15" type="text" placeholder="사용자님 닉네임을 입력해주세요 🤗"></p>
+          <p><input type="submit" value="💛 ToDoList 시작하기 💛"></button></p>
+        </div>
+      </form>
 
-    <div class="quoet">
-      <span></span>
-      <span></span>
+      <h1 id="greeting" class="hidden"></h1>
+      
+      <div class="greet hidden">
+        <form id="todo-form" class="hidden">
+          <p>ToDoList ✏️</p>
+          <input type="text" placeholder="할 일을 입력하시고 엔터를 눌러주세요 👇🏻" required>
+        </form>
+        <ul class="todo-list"></ul>
+      </div>
     </div>
-    <div class="weather">
-      <span></span>
-      <span></span>
-    </div>
-
 
 
 
     <script src="js/login.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/quotes.js"></script>
-    <!-- <script src="js/background.js"></script> -->
     <script src="js/todolist.js"></script>
     <script src="js/weather.js"></script>
   </body>

@@ -1,0 +1,145 @@
+* {
+  margin: 0 auto;
+}
+.hidden {
+  display: none;
+}
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.todolist {
+  width: 100%;
+  height: 720px;
+  background: url(../img/bg7.jpeg) no-repeat center;
+  background-size: cover;
+  padding-top: 150px;
+}
+.login {
+  width: 20%;
+  height: 500px;
+  margin: 0 auto;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 20px 60px;
+  background-color: rgba(255, 255, 255, 0.775);
+}
+.login .loginimg {
+  width: 70%;
+  height: auto;
+  margin-left: 15%;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+.login .clo {
+  width: 100%;
+  height: 50px;
+}
+.login .clock {
+  width: 6%;
+  height: auto;
+  float: left;
+  margin-right: 3%;
+  position: relative;
+  right: 30px;
+  top: 5px;
+}
+.login p:first-of-type input {
+  width: 92%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1.6px solid cornflowerblue;
+  background-color: #fff;
+  padding-left: 5%;
+  padding-top: 4px;
+  font-size: 1.15vw;
+  color: #000;
+  margin-bottom: 10px;
+}
+.login p:first-of-type input::placeholder {
+  color: #000;
+  font-size: 1.15vw;
+}
+.login p:last-of-type input {
+  width: 99%;
+  height: 45px;
+  border-radius: 10px;
+  border: none;
+  background-color: cornflowerblue;
+  color: #fff;
+  font-size: 1.15vw;
+}
+.login p:last-of-type input:hover {
+  background-color: rgb(49, 82, 144);
+  transition: all .3s;
+  cursor: pointer;
+}
+.login span {
+  display: block;
+  margin-bottom: 5px;
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+#greeting {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: -50px;
+}
+.greet {
+  width: 50%;
+  height: auto;
+  padding: 40px 0px;
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.656);
+  border-radius: 5px;
+}
+#todo-form {
+  text-align: center;
+}
+#todo-form input {
+  width: 50%;
+  height: 40px;
+  padding-left: 2%;
+  font-size: 1vw;
+}
+.todo-list {
+  margin-right: 5%;
+}
+.todo-list li:nth-of-type(1) {
+  margin-top: 30px;
+}
+.todo-list li {
+  width: 59.5%;
+  border-bottom: 1px solid #000;
+  list-style: none;
+  height: 40px;
+  line-height: 60px;
+  font-size: 1.1vw;
+  padding-bottom: 6px;
+} 
+#todo-form p {
+  margin-bottom: 10px;
+}
+.weather span {
+  color: #fff;
+  position: relative;
+  top: -100px;
+  left: 5%;
+  font-size: 1.3vw;
+}
+.quotes {
+  background-color: rgba(0, 0, 0, 0.191);
+  padding: 20px;
+  position: relative;
+  top: -100px;
+}
+.quote p {
+  color: #fff;
+  text-align: center;
+}
+.quotep {
+  color: #fff;
+  text-align: center;
+}

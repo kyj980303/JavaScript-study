@@ -13,8 +13,10 @@ const quotes = [
   }
 ]
 
-const quote = document.querySelector(".quote span:first-child")
-const quoteko = document.querySelector(".quote span:last-child")
+const quote = document.querySelector(".quote p:first-child")
+const quoteko = document.querySelector(".quote p:last-child")
 
-console.log(quotes[Math.floor(Math.random() * quotes.length)]);
+const quotetext = (quotes[Math.floor(Math.random() * quotes.length)]);
 
+quote.innerText = quotetext.quote;
+quoteko.innerText = quotetext.quoteko;
