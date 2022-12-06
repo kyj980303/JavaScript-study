@@ -27,11 +27,13 @@ function deleteToDo(event) {
 function changeimg(event) {
   // const changebtn = document.querySelector("button");
   const button2 = event.target;
+  const lastButton = document.querySelector("button:last-of-type");
   if (button2.innerText === "☐"){
     button2.innerText = "☑️";
+    alert("good 👏🏻👏🏻👏🏻");
   } else {
     button2.innerText = "☐";
-  }
+  } 
 }
 
 function paintToDo(newTodo) {
@@ -53,6 +55,7 @@ function paintToDo(newTodo) {
   li.appendChild(span2);
   li.appendChild(button);
   toDoList.appendChild(li);
+
 }
 
 function handleToDoSubmit(event) {
