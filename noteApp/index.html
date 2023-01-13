@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>자바스크립트를 사용하여 noteApp 만들기</title>
+    <link rel="stylesheet" href="css/noteApp.css" />
+  </head>
+  <body>
+    <div class="noteApp">
+      <div class="note">
+        <div class="tit">
+          <h1>Notes App</h1>
+          <p>Take notes and never forget.</p>
+        </div>
+
+        <div class="search">
+          <div class="bar">
+            <input type="text" value="" placeholder="Serach" />
+          </div>
+          <div class="bar">
+            <select>
+              <option>Sort by last edited</option>
+              <option>Sort by recently created</option>
+              <option>Sort alphabetically</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="memo">
+          <ul></ul>
+        </div>
+
+        <div class="create hide">
+          <div class="btnTi">
+            <div class="btnAndTime">
+              <button onclick="onBackBtn()">‹ Back</button>
+            </div>
+            <div class="btnAndTime">
+              <p>last edited a few seconds ago</p>
+            </div>
+          </div>
+
+          <form class="content">
+            <div class="noteTitle">
+              <input type="text" value="" placeholder="Note Title" />
+            </div>
+            <div class="contentTxt">
+              <textarea placeholder="Enter note text"></textarea>
+            </div>
+          </form>
+        </div>
+
+        <div class="createBtns hide">
+          <button class="remove">RemoveNote</button>
+          <button class="done" onclick="handleContentsSubmit()">Done</button>
+        </div>
+
+        <div class="createBtn">
+          <button onclick="onCreateBtn()">Create Note</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/noteApp.js"></script>
+    <script src="./js/createNote.js"></script>
+  </body>
+</html>
