@@ -17,6 +17,7 @@ function onCreateBtn(event) {
 function onBackBtn() {
   createBtn.classList.remove(HIDDEN_CLASSNAME);
   search.classList.remove(HIDDEN_CLASSNAME);
+  memoList.classList.remove(HIDDEN_CLASSNAME);
   create.classList.add(HIDDEN_CLASSNAME);
   createBtns.classList.add(HIDDEN_CLASSNAME);
 }
