@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  list-style: none;
+}
+.hide {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+.noteApp {
+  background-color: #579bb1;
+  width: 100%;
+  height: 670px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.note {
+  width: 40%;
+  height: auto;
+  background-color: #e8e8e8;
+  margin: 0 auto;
+  border-radius: 20px;
+  padding: 50px 20px 50px 20px;
+}
+.tit {
+  margin-bottom: 20px;
+}
+.search {
+  width: 100%;
+  height: 70px;
+}
+.search .bar {
+  float: left;
+  width: 100%;
+}
+.search .bar:nth-of-type(1) {
+  width: 67.5%;
+  margin-right: 2.5%;
+}
+.search .bar:nth-of-type(2) {
+  width: 30%;
+}
+.search .bar input {
+  width: 100%;
+  height: 28px;
+  padding-left: 2%;
+  border: none;
+  background-color: rgb(212, 212, 212);
+  border-radius: 5px;
+}
+.search .bar select {
+  width: 100%;
+  height: 28px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 2%;
+}
+.memo {
+  width: 97.5%;
+  height: auto;
+  margin-bottom: 20px;
+}
+.memo ul li {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  background-color: #fefefe;
+  margin-bottom: 10px;
+  padding: 10px 7px;
+  border-radius: 5px;
+}
+.createBtn {
+  float: right;
+}
+.createBtn button {
+  background-color: rgb(80, 80, 185);
+  padding: 7px 10px 7px 10px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+}
+.createBtn button:hover {
+  transition: all 0.3s;
+  background-color: rgb(61, 61, 135);
+}
+.create {
+  width: 100%;
+  height: auto;
+}
+.btnTi {
+  width: 100%;
+  height: 60px;
+}
+.btnAndTime {
+  float: left;
+}
+.btnAndTime button {
+  padding: 7px 10px 7px 7px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  background-color: rgb(181, 181, 181);
+}
+.btnAndTime button:hover {
+  transition: all 0.3s;
+  background-color: rgb(153, 153, 153);
+}
+.btnAndTime:nth-of-type(2) {
+  float: right;
+  margin-top: 5px;
+}
+.btnAndTime p {
+  color: #666666;
+  font-size: 14px;
+}
+.content {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+.content .noteTitle {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.content .noteTitle input {
+  width: 98.5%;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 1.5%;
+}
+.content .contentTxt textarea {
+  width: 97%;
+  height: 150px;
+  border: none;
+  border-radius: 5px;
+  padding: 1% 1.5%;
+}
+.createBtns {
+  width: 100%;
+  height: auto;
+}
+.createBtns .remove {
+  background-color: rgb(199, 77, 77);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 7px 10px 7px 10px;
+}
+.createBtns .remove:hover {
+  transition: all 0.3s;
+  background-color: rgb(175, 74, 74);
+}
+.createBtns .done {
+  background-color: rgb(80, 80, 185);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 7px 10px 7px 10px;
+  float: right;
+}
+.createBtns .done:hover {
+  transition: all 0.3s;
+  background-color: rgb(61, 61, 135);
+}
