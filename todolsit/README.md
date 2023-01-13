@@ -1,2 +1,3 @@
 # study-JavaScript
-자바스크립트로 todolist 만들기
+
+토이프로젝트1 todolist 만들기
