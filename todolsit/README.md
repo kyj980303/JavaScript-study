@@ -1,3 +1,3 @@
-# study-JavaScript
+# ToDoList
 
-토이프로젝트1 todolist 만들기
+토이프로젝트 - todolist 만들기

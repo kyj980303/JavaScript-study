@@ -1,3 +1,3 @@
-# study-JavaScript
+# Notes App
 
-토이프로젝트2 notes App 만들기
+토이프로젝트 - notes App 만들기
