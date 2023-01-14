@@ -13,10 +13,16 @@ function saveContents() {
   localStorage.setItem(CONTENT_KEY, JSON.stringify(memos));
 }
 
+function detailMemo(event) {
+  const li = event.target.parentElement;
+  console.log(li.id);
+}
+
 // localStorage에 저장된 메모들을 뿌려줄 함수
 function paintMemo(newMemo) {
   const li = document.createElement("li");
   li.id = newMemo.id;
+  li.addEventListener("click", detailMemo);
   const h3 = document.createElement("h3");
   const p = document.createElement("p");
 

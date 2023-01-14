@@ -1,0 +1,23 @@
+# Vanilla JavaScript로 SPA 구현하기
+
+### 폴더구조
+
+```
+SPA
+├── Readme
+├── frontend
+│   ├── index.html
+│   └── static
+│       ├── css
+│       └── js
+│           ├── index.js
+│           └── views
+│               ├── AbstractView.js
+│               ├── Dashboard.js
+│               ├── NotFound.js
+│               ├── Posts.js
+│               └── Settings.js
+├── package-lock.json
+├── package.json
+└── server.js
+```

@@ -11,16 +11,15 @@ function saveToDos() {
   // 복사해 두는 곳이다.
   // localStorage에는 문자열로만 저장이 가능하다.
   localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
-
 }
 
 function deleteToDo(event) {
   const li = event.target.parentElement;
   li.remove();
   // console.log(li.id);
-  // filter안에 toDo는(이름 아무거나 해도 상관없다) 
+  // filter안에 toDo는(이름 아무거나 해도 상관없다)
   // newTodoObj의 객체에 있는 배열들을 말한다.
-  toDos = toDos.filter(toDo => toDo.id !== parseInt(li.id));
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
   saveToDos();
 }
 
@@ -28,12 +27,12 @@ function changeimg(event) {
   // const changebtn = document.querySelector("button");
   const button2 = event.target;
   const lastButton = document.querySelector("button:last-of-type");
-  if (button2.innerText === "☐"){
+  if (button2.innerText === "☐") {
     button2.innerText = "☑️";
     alert("good 👏🏻👏🏻👏🏻");
   } else {
     button2.innerText = "☐";
-  } 
+  }
 }
 
 function paintToDo(newTodo) {
@@ -55,7 +54,6 @@ function paintToDo(newTodo) {
   li.appendChild(span2);
   li.appendChild(button);
   toDoList.appendChild(li);
-
 }
 
 function handleToDoSubmit(event) {
@@ -90,4 +88,3 @@ if (savedToDos !== null) {
   // 새로고침을 하더라도 localStorage에 있는 데이터들을 newTodoObj 객체 형태로 유지시킨다.
   parsedToDos.forEach(paintToDo);
 }
-
