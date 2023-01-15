@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, maximum-scale=1"
     />
     <title>자바스크립트를 사용하여 noteApp 만들기</title>
-    <link rel="stylesheet" href="css/noteApp.css" />
+    <link rel="stylesheet" href="./static/css/noteApp.css" />
   </head>
   <body>
     <div class="noteApp">
@@ -55,8 +55,9 @@
         </div>
 
         <div class="createBtns hide">
-          <button class="remove">RemoveNote</button>
-          <button class="done" onclick="handleContentsSubmit()">Done</button>
+          <button class="remove" onclick="onDeleteBtn()">Delete</button>
+          <button class="done" onclick="handleContentsSubmit()">Insert</button>
+          <button class="update" onclick="onUpdateBtn()">Update</button>
         </div>
 
         <div class="createBtn">
@@ -65,8 +66,8 @@
       </div>
     </div>
 
-    <script src="./js/noteApp.js"></script>
-    <script src="./js/create.js"></script>
-    <script src="./js/update.js"></script>
+    <script src="./static/js/noteApp.js"></script>
+    <script src="./static/js/create.js"></script>
+    <script src="./static/js/update.js"></script>
   </body>
 </html>

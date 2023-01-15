@@ -6,12 +6,18 @@ const memoList = document.querySelector(".memo");
 
 const HIDDEN_CLASSNAME = "hide";
 
-function onCreateBtn(event) {
+function onCreateBtn() {
   createBtn.classList.add(HIDDEN_CLASSNAME);
   search.classList.add(HIDDEN_CLASSNAME);
+  update.classList.add(HIDDEN_CLASSNAME);
   memoList.classList.add(HIDDEN_CLASSNAME);
+  remove.classList.add(HIDDEN_CLASSNAME);
   create.classList.remove(HIDDEN_CLASSNAME);
   createBtns.classList.remove(HIDDEN_CLASSNAME);
+  done.classList.remove(HIDDEN_CLASSNAME);
+  // createNote를 눌렀을 때 value값들을 비워준다.
+  contentInput.value = "";
+  contentTextArea.value = "";
 }
 
 function onBackBtn() {

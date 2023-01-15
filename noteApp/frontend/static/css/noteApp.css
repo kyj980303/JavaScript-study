@@ -149,17 +149,20 @@ button {
 }
 .content .noteTitle input {
   width: 98.5%;
-  height: 30px;
+  height: 40px;
   border: none;
   border-radius: 5px;
-  padding-left: 1.5%;
+  padding-left: 2%;
+  font-size: 16px;
 }
 .content .contentTxt textarea {
-  width: 97%;
+  width: 96.2%;
   height: 150px;
   border: none;
   border-radius: 5px;
-  padding: 1% 1.5%;
+  padding: 2%;
+  font-size: 16px;
+  letter-spacing: 0.5px;
 }
 .createBtns {
   width: 100%;
@@ -187,4 +190,17 @@ button {
 .createBtns .done:hover {
   transition: all 0.3s;
   background-color: rgb(61, 61, 135);
+}
+.createBtns .update {
+  background-color: rgb(80, 185, 118);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 7px 10px 7px 10px;
+  float: right;
+  margin-right: 1%;
+}
+.createBtns .update:hover {
+  transition: all 0.3s;
+  background-color: rgb(61, 135, 93);
 }
