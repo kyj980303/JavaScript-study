@@ -18,6 +18,7 @@ function onCreateBtn() {
   // createNote를 눌렀을 때 value값들을 비워준다.
   contentInput.value = "";
   contentTextArea.value = "";
+  register.classList.add(HIDDEN_CLASSNAME);
 }
 
 function onBackBtn() {

@@ -8,8 +8,18 @@ ul li {
 .hide {
   display: none;
 }
+.right {
+  text-align: right;
+  font-size: 12px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  margin-right: 1%;
+}
 button {
   cursor: pointer;
+}
+.noMemo {
+  text-align: center;
 }
 .noteApp {
   background-color: #579bb1;

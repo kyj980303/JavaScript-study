@@ -6,6 +6,8 @@ const contentLi = document.querySelector(".memo ul li");
 const remove = document.querySelector(".remove");
 const done = document.querySelector(".done");
 const update = document.querySelector(".update");
+const noMemo = document.querySelector(".memo ul p");
+const register = document.querySelector(".create .btnTi .btnAndTime p");
 
 const CONTENT_KEY = "memo";
 let memos = [];
@@ -42,10 +44,24 @@ function updateNote(id) {
 }
 // 수정할 메모의 타이틀과 컨텐츠를 변경한다.
 function onUpdateBtn() {
+  // 날짜
+  let today = new Date();
+  let year = today.getFullYear();
+  let month = ("0" + (today.getMonth() + 1)).slice(-2);
+  let day = ("0" + today.getDate()).slice(-2);
+  let dateString = year + "-" + month + "-" + day;
+  // 시간
+  let hours = ("0" + today.getHours()).slice(-2);
+  let minutes = ("0" + today.getMinutes()).slice(-2);
+  let seconds = ("0" + today.getSeconds()).slice(-2);
+  let timeString = hours + ":" + minutes + ":" + seconds;
+
   for (let i = 0; i < memos.length; i++) {
     if (memos[i].id === Number(update.id)) {
       memos[i].title = contentInput.value;
       memos[i].content = contentTextArea.value;
+      memos[i].date = dateString;
+      memos[i].time = timeString;
       location.reload(true);
     }
   }
@@ -66,12 +82,15 @@ function detailMemo(event) {
   memoList.classList.add(HIDDEN_CLASSNAME);
   createBtn.classList.add(HIDDEN_CLASSNAME);
   done.classList.add(HIDDEN_CLASSNAME);
+  register.classList.remove(HIDDEN_CLASSNAME);
 
   // 등록된 메모중 하나를 클릭하면 해당 메모의 타이틀과 컨텐츠를 보여준다.
   for (let i = 0; i < memos.length; i++) {
     if (Number(li.id) === memos[i].id) {
       contentInput.value = memos[i].title;
       contentTextArea.value = memos[i].content;
+      register.innerText = `
+      Registered on ${memos[i].date} at ${memos[i].time}`;
     }
   }
 }
@@ -83,16 +102,20 @@ function paintMemo(newMemo) {
   li.addEventListener("click", detailMemo);
   const h3 = document.createElement("h3");
   const p = document.createElement("p");
+  const p2 = document.createElement("p");
 
   h3.innerText = newMemo.title;
   p.innerText = newMemo.content;
+  p2.innerText = `${newMemo.date} (${newMemo.time})`;
+  p2.classList.add("right");
 
   li.appendChild(h3);
   li.appendChild(p);
   contentList.appendChild(li);
+  contentList.appendChild(p2);
 }
 
-// Done을 눌렀을 때(메모를 등록했을 때) 실행될 코드
+// insert를 눌렀을 때(메모를 등록했을 때) 실행될 코드
 function handleContentsSubmit(event) {
   if (contentInput.value === "") {
     alert("😅 Please write title!");
@@ -105,14 +128,34 @@ function handleContentsSubmit(event) {
 
   // 새로운 메모를 담을 배열을 준비
   let newMemo = [];
-  // 메모 타이틀과 내용을 newMemo에 담는다.
-  newMemo.push(contentInput.value, contentTextArea.value);
+
+  // 날짜
+  let today = new Date();
+  let year = today.getFullYear();
+  let month = ("0" + (today.getMonth() + 1)).slice(-2);
+  let day = ("0" + today.getDate()).slice(-2);
+  let dateString = year + "-" + month + "-" + day;
+  // 시간
+  let hours = ("0" + today.getHours()).slice(-2);
+  let minutes = ("0" + today.getMinutes()).slice(-2);
+  let seconds = ("0" + today.getSeconds()).slice(-2);
+  let timeString = hours + ":" + minutes + ":" + seconds;
+
+  // 메모의 타이틀, 내용, 날짜를 newMemo에 담는다.
+  newMemo.push(
+    contentInput.value,
+    contentTextArea.value,
+    dateString,
+    timeString
+  );
 
   // 메모를 삭제할 때 선택된 메모를 알아내기 위해 객체로 만든다.
   const newMemoObj = {
     title: newMemo[0],
     content: newMemo[1],
     id: Date.now(), // 메모를 식별해줄 고유의 아이디값을 넣어준다.
+    date: newMemo[2],
+    time: newMemo[3],
   };
 
   memos.push(newMemoObj);
@@ -125,6 +168,9 @@ function handleContentsSubmit(event) {
 
   paintMemo(newMemoObj);
   saveContents();
+
+  // 등록이 되면 메모장이 비어있다는 텍스트를 제거한다.
+  noMemo.classList.add(HIDDEN_CLASSNAME);
 }
 
 // localStorage에 memo라는 키 값을 가진 객체를 가져온다.
@@ -138,4 +184,46 @@ if (savedMemos !== null) {
   memos = parsedMemos;
   // 그리고 새로고침을 하더라도 localStorage에있는 데이터들을 보여주도록한다.
   parsedMemos.forEach(paintMemo);
+}
+
+// 등록된 메모가 없다면 메모장이 비어있다는 텍스트를 출력한다.
+if (memos.length === 0) {
+  noMemo.classList.remove(HIDDEN_CLASSNAME);
+}
+
+// 등록된 메모에 필터 적용
+function onFilter() {
+  const selectFilter = document.getElementById("selectbox");
+  // option value값을 가져온다.
+  let selectValue = selectFilter.options[selectFilter.selectedIndex].value;
+  // option value가 알파벳순인 경우
+  if (selectValue === "2") {
+    memos = memos.sort((a, b) => {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    saveContents();
+    paintMemo(memos);
+    location.reload(true);
+  }
+  // option value가 최근등록순인 경우
+  else if (selectValue === "1") {
+    memos = memos.sort((a, b) => {
+      if (a.time > b.time) {
+        return -1;
+      } else if (a.time < b.time) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    saveContents();
+    paintMemo(memos);
+    location.reload(true);
+  }
 }
