@@ -19,13 +19,19 @@
 
         <div class="search">
           <div class="bar">
-            <input type="text" value="" placeholder="Serach" />
+            <input
+              type="text"
+              value=""
+              onkeyup="printSearch()"
+              placeholder="Serach"
+            />
           </div>
           <div class="bar">
             <select id="selectbox" name="selectbox" onchange="onFilter()">
-              <option value="0">Please select a sort order</option>
-              <option value="1">Sort by recently created</option>
-              <option value="2">Sort alphabetically</option>
+              <option>Please select a sort order</option>
+              <option value="1">Sort alphabetically</option>
+              <option value="2">Sort by recently created</option>
+              <option value="3">sort by oldest</option>
             </select>
           </div>
         </div>
@@ -33,6 +39,12 @@
         <div class="memo">
           <ul>
             <p class="noMemo hide">Note is empty.</p>
+          </ul>
+        </div>
+
+        <div class="find">
+          <ul>
+            <p class="noMemo hide">There are no such notes.</p>
           </ul>
         </div>
 

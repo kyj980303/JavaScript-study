@@ -2,12 +2,16 @@ const contentForm = document.querySelector(".content");
 const contentInput = document.querySelector(".noteTitle input");
 const contentTextArea = document.querySelector(".contentTxt textarea");
 const contentList = document.querySelector(".memo ul");
+const findM = document.querySelector(".find ul");
+const find = document.querySelector(".find");
 const contentLi = document.querySelector(".memo ul li");
 const remove = document.querySelector(".remove");
 const done = document.querySelector(".done");
 const update = document.querySelector(".update");
 const noMemo = document.querySelector(".memo ul p");
+const notFind = document.querySelector(".find ul p");
 const register = document.querySelector(".create .btnTi .btnAndTime p");
+const searchInput = document.querySelector(".search .bar input");
 
 const CONTENT_KEY = "memo";
 let memos = [];
@@ -83,6 +87,7 @@ function detailMemo(event) {
   createBtn.classList.add(HIDDEN_CLASSNAME);
   done.classList.add(HIDDEN_CLASSNAME);
   register.classList.remove(HIDDEN_CLASSNAME);
+  find.classList.add(HIDDEN_CLASSNAME);
 
   // 등록된 메모중 하나를 클릭하면 해당 메모의 타이틀과 컨텐츠를 보여준다.
   for (let i = 0; i < memos.length; i++) {
@@ -197,7 +202,7 @@ function onFilter() {
   // option value값을 가져온다.
   let selectValue = selectFilter.options[selectFilter.selectedIndex].value;
   // option value가 알파벳순인 경우
-  if (selectValue === "2") {
+  if (selectValue === "1") {
     memos = memos.sort((a, b) => {
       if (a.title.toLowerCase() < b.title.toLowerCase()) {
         return -1;
@@ -212,7 +217,7 @@ function onFilter() {
     location.reload(true);
   }
   // option value가 최근등록순인 경우
-  else if (selectValue === "1") {
+  else if (selectValue === "2") {
     memos = memos.sort((a, b) => {
       if (a.time > b.time) {
         return -1;
@@ -224,6 +229,69 @@ function onFilter() {
     });
     saveContents();
     paintMemo(memos);
+    location.reload(true);
+  }
+  // option value가 오래된순인 경우
+  else {
+    memos = memos.sort((a, b) => {
+      if (b.time > a.time) {
+        return -1;
+      } else if (b.time < a.time) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    saveContents();
+    paintMemo(memos);
+    location.reload(true);
+  }
+}
+
+// localStorage에 저장된 메모들을 뿌려줄 코드
+function findMemo(newMemo) {
+  const li = document.createElement("li");
+  li.id = newMemo.id;
+  li.addEventListener("click", detailMemo);
+  const h3 = document.createElement("h3");
+  const p = document.createElement("p");
+  const p2 = document.createElement("p");
+
+  h3.innerText = newMemo.title;
+  p.innerText = newMemo.content;
+  p2.innerText = `${newMemo.date} (${newMemo.time})`;
+  p2.classList.add("right");
+
+  li.appendChild(h3);
+  li.appendChild(p);
+  findM.appendChild(li);
+  findM.appendChild(p2);
+}
+
+// 메모 검색 기능
+function printSearch() {
+  let search = searchInput.value;
+  // 검색란이 비어있지 않으면
+  if (search !== "") {
+    memoList.classList.add(HIDDEN_CLASSNAME);
+    for (let i = 0; i < memos.length; i++) {
+      let mt = memos[i].title.toLowerCase();
+      // 등록된 메모의 타이틀에 해당 검색 문자가 하나라도 있을 경우
+      if (mt.includes(search)) {
+        // 해당 메모장을 찾아서 보여준다.
+        findMemo(memos[i]);
+        notFind.classList.add(HIDDEN_CLASSNAME);
+      } else {
+        // 해당 메모장이 없으면 없다는 문자를 출력해준다.
+        notFind.classList.remove(HIDDEN_CLASSNAME);
+      }
+    }
+  }
+  // 검색란이 비어있을경우
+  else {
+    // 이미 등록되어있는 메모장을 출력해준다.
+    memoList.classList.remove(HIDDEN_CLASSNAME);
+    findM.classList.add(HIDDEN_CLASSNAME);
     location.reload(true);
   }
 }
