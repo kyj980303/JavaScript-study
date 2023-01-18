@@ -21,6 +21,12 @@ button {
 .noMemo {
   text-align: center;
 }
+.noSuchNotes {
+  height: 100px;
+  line-height: 100px;
+  margin-bottom: 20px;
+  text-align: center;
+}
 .noteApp {
   background-color: #579bb1;
   width: 100%;

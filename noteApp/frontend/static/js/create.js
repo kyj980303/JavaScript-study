@@ -9,7 +9,7 @@ const remove = document.querySelector(".remove");
 const done = document.querySelector(".done");
 const update = document.querySelector(".update");
 const noMemo = document.querySelector(".memo ul p");
-const notFind = document.querySelector(".find ul p");
+const notFind = document.querySelector(".noSuchNotes");
 const register = document.querySelector(".create .btnTi .btnAndTime p");
 const searchInput = document.querySelector(".search .bar input");
 
@@ -266,24 +266,27 @@ function findMemo(newMemo) {
   li.appendChild(p);
   findM.appendChild(li);
   findM.appendChild(p2);
+  notFind.classList.add(HIDDEN_CLASSNAME); // 안 보임
 }
 
 // 메모 검색 기능
 function printSearch() {
-  let search = searchInput.value;
+  let search = searchInput.value.toLowerCase();
+  console.log(search);
   // 검색란이 비어있지 않으면
   if (search !== "") {
     memoList.classList.add(HIDDEN_CLASSNAME);
     for (let i = 0; i < memos.length; i++) {
-      let mt = memos[i].title.toLowerCase();
-      // 등록된 메모의 타이틀에 해당 검색 문자가 하나라도 있을 경우
-      if (mt.includes(search)) {
-        // 해당 메모장을 찾아서 보여준다.
+      let title = memos[i].title.toLowerCase();
+      if (title === search) {
         findMemo(memos[i]);
-        notFind.classList.add(HIDDEN_CLASSNAME);
+        find.classList.remove(HIDDEN_CLASSNAME);
+        break;
       } else {
-        // 해당 메모장이 없으면 없다는 문자를 출력해준다.
-        notFind.classList.remove(HIDDEN_CLASSNAME);
+        notFind.classList.remove(HIDDEN_CLASSNAME); // 보여짐
+        find.classList.add(HIDDEN_CLASSNAME);
+        memoList.classList.add(HIDDEN_CLASSNAME);
+        break;
       }
     }
   }
@@ -292,6 +295,7 @@ function printSearch() {
     // 이미 등록되어있는 메모장을 출력해준다.
     memoList.classList.remove(HIDDEN_CLASSNAME);
     findM.classList.add(HIDDEN_CLASSNAME);
-    location.reload(true);
+    notFind.classList.add(HIDDEN_CLASSNAME); // 보여짐
+    // location.reload(true);
   }
 }
