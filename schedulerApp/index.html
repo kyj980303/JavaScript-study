@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>noteApp</title>
+    <link rel="stylesheet" href="./static/css/schedulerApp.css" />
+  </head>
+  <body>
+    <div class="scheduler">
+      <div class="rap">
+        <div class="header">
+          <h2 class="dateTitle"></h2>
+          <span class="btn nextDay"></span>
+          <span class="btn prevDay"></span>
+        </div>
+
+        <div class="grid dateHead">
+          <div>일</div>
+          <div>월</div>
+          <div>화</div>
+          <div>수</div>
+          <div>목</div>
+          <div>금</div>
+          <div>토</div>
+        </div>
+
+        <div class="grid dateBoard"></div>
+      </div>
+    </div>
+    <div class="scheduler">
+      <h1>ToDoList</h1>
+      <p class="today"></p>
+
+      <div class="inputSchedul">
+        <form class="todo-form">
+          <input type="text" placeholder="Add ToDoList" />
+        </form>
+        <ul class="todo-list">
+          <li>알고리즘 문제풀자</li>
+          <li>자바스크립트 공부하자</li>
+          <li>리엑트 공부하자</li>
+        </ul>
+      </div>
+    </div>
+    <script src="./static/js/scheduler.js"></script>
+  </body>
+</html>
