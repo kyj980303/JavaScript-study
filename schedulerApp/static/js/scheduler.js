@@ -1,125 +1,66 @@
-// 달력 생성
-const makeCalendar = (date) => {
-  // 현재 년도와 월 받아오기
-  let currentYear = new Date(date).getFullYear();
-  let currentMonth = new Date(date).getMonth() + 1;
-  let currentDay = new Date(date).getDate();
-  let currentMonth2 = ("0" + (date.getMonth() + 1)).slice(-2);
+const todoForm = document.querySelector(".inputSchedul .todo-form");
+const todoInput = document.querySelector(".inputSchedul .todo-form input");
+const todoList = document.querySelector(".todo-list");
+const inputSchedul = document.querySelector(".inputSchedul");
 
-  // 첫날의 요일 구하기 - 초기 시작위치를 위해서
-  const firstDay = new Date(date.setDate(1)).getDay();
-  // 마지막 날짜 구하기
-  const lastDay = new Date(currentYear, currentMonth, 0).getDate();
+const SCHEDULER_KEY = "schedul";
 
-  // 남은 박스만큼 다음달 날짜 표시
-  const limitDay = firstDay + lastDay;
-  const nextDay = Math.ceil(limitDay / 7) * 7;
+let toDos = [];
 
-  let htmlDummy = "";
-
-  // 한달전 날짜 표시하기
-  for (let i = 0; i < firstDay; i++) {
-    htmlDummy += `<div class="noColor"></div>`;
-  }
-
-  // 이번달 날짜 표시하기
-  for (let i = 1; i <= lastDay; i++) {
-    let month = ("0" + (date.getMonth() + 1)).slice(-2);
-    let id = String(currentYear) + String(month) + String(i);
-    currentMonth2 === month && i === currentDay
-      ? (htmlDummy += `<div class="toColor" id="${id}" onclick="onToday(${id})">${i}</div>`)
-      : (htmlDummy += `<div class="dayNum" id="${id}" onclick="onClickDay(${id})">${i}</div>`);
-  }
-
-  // 다음달 날짜 표시하기
-  for (let i = limitDay; i < nextDay; i++) {
-    htmlDummy += `<div class="noColor"></div>`;
-  }
-  document.querySelector(`.dateBoard`).innerHTML = htmlDummy;
-  document.querySelector(
-    `.dateTitle`
-  ).innerText = `${currentYear}년 ${currentMonth}월`;
-
-  // 매달 날짜 표시
-  let mon = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  for (let i = 1; i < 13; i++) {
-    if (currentMonth === i) {
-      currentMonth = mon[i - 1];
-    }
-  }
-
-  let schedulToday = document.querySelector(".scheduler .today");
-  schedulToday.innerText = `${currentMonth}.`;
-};
-
-const date = new Date();
-let month = new Date().getMonth() + 1;
-let day = new Date().getDate();
-
-makeCalendar(date);
-
-// 이전달 이동
-document.querySelector(`.prevDay`).onclick = () => {
-  makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
-};
-
-// 다음달 이동
-document.querySelector(`.nextDay`).onclick = () => {
-  makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
-};
-// 매달 날짜 표시
-function monthToString(month) {
-  let mon = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  console.log(Number(month));
-  for (let i = 1; i < 13; i++) {
-    if (Number(month) === i) {
-      month = mon[i - 1];
-      console.log(month);
-    }
-  }
+function saveToDos() {
+  localStorage.setItem(SCHEDULER_KEY, JSON.stringify(toDos));
 }
 
-let schedulToday = document.querySelector(".scheduler .today");
-function onToday(id) {
-  month = String(id).slice(4, 6);
-  monthToString(month);
+todoForm.addEventListener("submit", handleToDoSubmit);
 
-  let date = String(id).slice(6, 9);
-  schedulToday.innerText = `${month}. ${date}`;
+// 해당 날짜의 투두리스트에 아이디값 전달
+function submitId(id) {
+  inputSchedul.id = id;
+  todoList.id = id;
 }
 
-function onClickDay(id) {
-  month = String(id).slice(4, 6);
-  monthToString(month);
-  let date = String(id).slice(6, 9);
+function handleToDoSubmit(evnet) {
+  evnet.preventDefault();
+  const newTodo = todoInput.value;
+  todoInput.value = "";
 
-  schedulToday.innerText = `${month}. ${date}`;
+  const newTodoObj = {
+    work: newTodo,
+    id: Date.now(),
+  };
+
+  toDos.push(newTodoObj);
+  paintToDo(newTodoObj);
+  saveToDos();
+}
+
+function paintToDo(newTodo) {
+  const li = document.createElement("li");
+  li.id = newTodo.id;
+  const button1 = document.createElement("button");
+  button1.innerText = "☐";
+  const span = document.createElement("span");
+  span.innerText = newTodo.work;
+  const button2 = document.createElement("button");
+  button2.innerText = "미루기";
+  const button3 = document.createElement("button");
+  button3.innerText = "삭제하기";
+  li.appendChild(button1);
+  li.appendChild(span);
+  li.appendChild(button2);
+  li.appendChild(button3);
+  todoList.appendChild(li);
+}
+
+const savedToDos = localStorage.getItem(SCHEDULER_KEY);
+console.log(savedToDos);
+
+if (savedToDos !== null) {
+  // localStorage에 들어있는 문자열을 데이터로 이용하기 위해 배열로 만들어 주어야한다.
+  // JSON.parse는 String을 배열로 만들어준다.
+  const parsedToDos = JSON.parse(savedToDos);
+  toDos = parsedToDos;
+  // forEach는 각각의 item들을 준다.
+  // 새로고침을 하더라도 localStorage에 있는 데이터들을 newTodoObj 객체 형태로 유지시킨다.
+  parsedToDos.forEach(paintToDo);
 }
