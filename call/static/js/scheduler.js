@@ -34,48 +34,21 @@ function handleToDoSubmit(evnet) {
   saveToDos();
 }
 
-function change(event) {
-  const button1 = event.target;
-  if (button1.innerText === "☐") {
-    button1.innerText = "✅";
-  } else {
-    button1.innerText = "☐";
-  }
-}
-
-function deleteTodo(event) {
-  const li = event.target.parentElement.parentNode;
-  li.remove();
-  toDos = toDos.filter((todo) => todo.id !== Number(li.id));
-  saveToDos();
-}
-
 function paintToDo(newTodo) {
   const li = document.createElement("li");
   li.id = newTodo.id;
   const button1 = document.createElement("button");
   button1.innerText = "☐";
-  button1.addEventListener("click", change);
-  const p = document.createElement("p");
-  p.innerText = newTodo.work;
+  const span = document.createElement("span");
+  span.innerText = newTodo.work;
   const button2 = document.createElement("button");
-  button2.innerText = "Delete";
-  button2.addEventListener("click", deleteTodo);
+  button2.innerText = "미루기";
   const button3 = document.createElement("button");
-  button3.innerText = "Postpone";
-  const div = document.createElement("div");
-  const div2 = document.createElement("div");
-  const div3 = document.createElement("div");
-  div.className = "todolist";
-  div2.className = "todolist";
-  div3.className = "todolist";
-  li.appendChild(div);
-  li.appendChild(div2);
-  li.appendChild(div3);
-  div.appendChild(button1);
-  div2.appendChild(p);
-  div3.appendChild(button3);
-  div3.appendChild(button2);
+  button3.innerText = "삭제하기";
+  li.appendChild(button1);
+  li.appendChild(span);
+  li.appendChild(button2);
+  li.appendChild(button3);
   todoList.appendChild(li);
 }
 

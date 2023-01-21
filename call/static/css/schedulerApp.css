@@ -130,7 +130,6 @@ button {
   width: 100%;
   height: auto;
   margin-bottom: 30px;
-  border-bottom: 1px solid #fff;
 }
 .inputSchedul .todo-form input {
   width: 100%;
@@ -150,74 +149,46 @@ button {
 .inputSchedul .todo-list {
   width: 100%;
   height: auto;
-}
-.inputSchedul .todo-list::after {
-  content: "";
-  clear: both;
-  display: block;
+  /* border: 1px solid red; */
 }
 .inputSchedul .todo-list li {
   width: 100%;
   height: auto;
-  padding-bottom: 10px;
-  padding-top: 15px;
-  /* border-bottom: 1px dashed #fff; */
+  border: 1px solid pink;
+  margin-bottom: 20px;
 }
-.inputSchedul .todo-list li::after {
-  content: "";
-  clear: both;
-  display: block;
-}
-.inputSchedul .todo-list li .todolist {
-  float: left;
-}
-.inputSchedul .todo-list li .todolist:nth-of-type(1) {
-  width: 5.5%;
-  height: auto;
-  margin-left: 1%;
-}
-.inputSchedul .todo-list li .todolist:nth-of-type(1) button {
-  color: #fff;
-}
-.inputSchedul .todo-list li .todolist:nth-of-type(2) {
-  width: 58.5%;
-  height: auto;
+.inputSchedul .todo-list li button:nth-of-type(1) {
   margin-right: 5%;
-}
-.inputSchedul .todo-list li .todolist:nth-of-type(2) p {
-  font-weight: lighter;
-  font-size: 16px;
-  line-height: 22px;
-}
-.inputSchedul .todo-list li .todolist:nth-of-type(3) {
-  width: 30%;
-  height: auto;
-  /* border: 1px solid red; */
-}
-.inputSchedul .todo-list li .todolist:nth-of-type(3) button {
+  border: 1px solid blue;
   color: #fff;
-  float: right;
-  border-radius: 5px;
+  display: block;
+  width: 4%;
+}
+.inputSchedul .todo-list li button:nth-of-type(2),
+.inputSchedul .todo-list li button:nth-of-type(3) {
+  padding: 5px 5px;
+  color: #fff;
+  border: 1px solid #fff;
   font-size: 12px;
+  border-radius: 5px;
+  float: right;
+  margin-right: 2%;
+  display: block;
+  width: 13%;
+}
+.inputSchedul .todo-list li button:nth-of-type(2):hover {
+  background-color: rgb(69, 100, 31);
+  transition: all 0.3s;
+}
+.inputSchedul .todo-list li button:nth-of-type(3):hover {
+  background-color: rgb(100, 31, 31);
+  transition: all 0.3s;
+}
+.inputSchedul .todo-list li span {
+  font-size: 16px;
+  margin-right: 0%;
   font-weight: lighter;
-  /* border: 1px solid blue; */
-}
-.inputSchedul .todo-list li .todolist:nth-of-type(3) button:nth-of-type(2) {
-  margin-right: 8%;
-}
-.inputSchedul
-  .todo-list
-  li
-  .todolist:nth-of-type(3)
-  button:nth-of-type(2):hover {
-  color: rgb(255, 74, 42);
-  transition: all 0.3s;
-}
-.inputSchedul
-  .todo-list
-  li
-  .todolist:nth-of-type(3)
-  button:nth-of-type(1):hover {
-  color: rgb(0, 255, 183);
-  transition: all 0.3s;
+  display: inline-block;
+  width: 60%;
+  border: 1px solid red;
 }

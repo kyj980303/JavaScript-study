@@ -30,8 +30,8 @@ const makeCalendar = (date) => {
     // 현재 날짜는 따로 표시를 해주기 위해 조건문을 넣어주었다.
     let month = new Date().getMonth() + 1; // 현재 월
     Number(month2) === month && i === day // 현재 날짜 = 현재 월과 캘린더의 월이 같고 캘린더의 날짜와 현재 날짜가 같아야한다.
-      ? (htmlDummy += `<div class="toColor" id="${id}" onclick="onToday(${id}); submitId(${id})">${i}</div>`) // 이벤트에 아이디값을 같이 보냄
-      : (htmlDummy += `<div class="dayNum" id="${id}" onclick="onClickDay(${id}); submitId(${id})">${i}</div>`);
+      ? (htmlDummy += `<div class="toColor" id="${id}" onclick="onToday(${id}); submitId(${id}); create(${id})">${i}</div>`) // 이벤트에 아이디값을 같이 보냄
+      : (htmlDummy += `<div class="dayNum" id="${id}" onclick="onClickDay(${id}); submitId(${id}); create(${id})">${i}</div>`);
   }
 
   // 다음달 날짜 표시하기
