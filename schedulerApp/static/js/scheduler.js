@@ -4,9 +4,15 @@ const todoList = document.querySelector(".todo-list");
 const inputSchedul = document.querySelector(".inputSchedul");
 
 const SCHEDULER_KEY = "schedul";
+const HIDDEN_CLASSNAME = "hide";
+
+let keyValue =
+  date.getFullYear() + ("0" + (date.getMonth() + 1)).slice(-2) + day;
+
+todoList.id = keyValue;
+inputSchedul.id = keyValue;
 
 let toDos = [];
-
 function saveToDos() {
   localStorage.setItem(SCHEDULER_KEY, JSON.stringify(toDos));
 }
@@ -17,6 +23,18 @@ todoForm.addEventListener("submit", handleToDoSubmit);
 function submitId(id) {
   inputSchedul.id = id;
   todoList.id = id;
+  console.log(todoList.id);
+  console.log(inputSchedul.id);
+  for (let i = 0; i < toDos.length; i++) {
+    console.log(toDos[i].date);
+    if (toDos[i].date === todoList.id && todoList.id === inputSchedul.id) {
+      todoList.classList.remove(HIDDEN_CLASSNAME);
+      break;
+    } else {
+      todoList.classList.add(HIDDEN_CLASSNAME);
+      break;
+    }
+  }
 }
 
 function handleToDoSubmit(evnet) {
@@ -27,6 +45,7 @@ function handleToDoSubmit(evnet) {
   const newTodoObj = {
     work: newTodo,
     id: Date.now(),
+    date: keyValue,
   };
 
   toDos.push(newTodoObj);
@@ -50,6 +69,19 @@ function deleteTodo(event) {
   saveToDos();
 }
 
+function postponeTodo(event) {
+  const button3 = event.target;
+  console.log(button3.id);
+  console.log(toDos[0].id);
+  for (let i = 0; i < toDos.length; i++) {
+    if (Number(button3.id) === toDos[i].id) {
+      toDos[i].date = String(Number(toDos[i].date) + 1);
+      todoList.id = toDos[i].date;
+      saveToDos();
+    }
+  }
+}
+
 function paintToDo(newTodo) {
   const li = document.createElement("li");
   li.id = newTodo.id;
@@ -63,6 +95,9 @@ function paintToDo(newTodo) {
   button2.addEventListener("click", deleteTodo);
   const button3 = document.createElement("button");
   button3.innerText = "Postpone";
+  button3.id = newTodo.id;
+  button3.className = newTodo.date;
+  button3.addEventListener("click", postponeTodo);
   const div = document.createElement("div");
   const div2 = document.createElement("div");
   const div3 = document.createElement("div");

@@ -78,6 +78,9 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+.hide {
+  display: none;
+}
 .scheduler {
   float: left;
 }
@@ -119,8 +122,9 @@ button {
   color: #fff;
 }
 .dateBoard .toColor {
-  border: 1px solid rgb(97, 140, 234);
-  background-color: rgba(97, 141, 234, 0.075);
+  transition: all 0.3s;
+  background-color: rgba(97, 141, 234, 0.278);
+  border: 1px solid rgb(155, 207, 255);
 }
 .inputSchedul {
   width: 100%;
@@ -177,7 +181,7 @@ button {
   margin-left: 1%;
 }
 .inputSchedul .todo-list li .todolist:nth-of-type(1) button {
-  color: #fff;
+  color: rgb(0, 255, 183);
 }
 .inputSchedul .todo-list li .todolist:nth-of-type(2) {
   width: 58.5%;

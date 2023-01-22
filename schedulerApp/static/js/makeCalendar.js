@@ -30,8 +30,8 @@ const makeCalendar = (date) => {
     // 현재 날짜는 따로 표시를 해주기 위해 조건문을 넣어주었다.
     let month = new Date().getMonth() + 1; // 현재 월
     Number(month2) === month && i === day // 현재 날짜 = 현재 월과 캘린더의 월이 같고 캘린더의 날짜와 현재 날짜가 같아야한다.
-      ? (htmlDummy += `<div class="toColor" id="${id}" onclick="onToday(${id}); submitId(${id})">${i}</div>`) // 이벤트에 아이디값을 같이 보냄
-      : (htmlDummy += `<div class="dayNum" id="${id}" onclick="onClickDay(${id}); submitId(${id})">${i}</div>`);
+      ? (htmlDummy += `<div class="toColor" id="${id}" onclick="onToday(${id});">${i}</div>`) // 이벤트에 아이디값을 같이 보냄
+      : (htmlDummy += `<div class="dayNum" id="${id}" onclick="onClickDay(${id});">${i}</div>`);
   }
 
   // 다음달 날짜 표시하기
@@ -115,17 +115,34 @@ const schedulToday = document.querySelector(".scheduler .today");
 // 오늘 날짜를 클릭했을 때 아이디값을 받아와 오늘 월과 날짜를 출력
 function onToday(id) {
   // console.log(id);
+  submitId(id);
   month = String(id).slice(4, 6);
   let date = String(id).slice(6, 9);
   let m = monthToString(month);
   schedulToday.innerText = `${m}. ${date}`;
 }
 
+// 날짜 클릭시 해당 날짜 배경색 바꾸기 위함
+
 // 아무 날짜를 클릭했을 때 아이디값을 받아와 해당 월과 날짜를 출력
+let color = "white";
 function onClickDay(id) {
-  // console.log(id);
+  submitId(id);
   month = String(id).slice(4, 6);
   let date = String(id).slice(6, 9);
   let m = monthToString(month);
   schedulToday.innerText = `${m}. ${date}`;
+
+  // 해당 날짜 클릭시 배경색 변경
+  const obj = document.getElementById(id);
+
+  if (color === "white") {
+    obj.style.background = "#DBE2EF";
+    color = "#DBE2EF";
+    console.log(color);
+  } else {
+    obj.style.background = "white";
+    color = "white";
+    console.log(color);
+  }
 }
