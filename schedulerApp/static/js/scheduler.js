@@ -1,6 +1,7 @@
 const todoForm = document.querySelector(".inputSchedul .todo-form");
 const todoInput = document.querySelector(".inputSchedul .todo-form input");
 const todoList = document.querySelector(".todo-list");
+const todoListLi = document.querySelector(".todo-list li");
 const inputSchedul = document.querySelector(".inputSchedul");
 
 const SCHEDULER_KEY = "schedul";
@@ -23,12 +24,16 @@ todoForm.addEventListener("submit", handleToDoSubmit);
 function submitId(id) {
   inputSchedul.id = id;
   todoList.id = id;
-  console.log(todoList.id);
-  console.log(inputSchedul.id);
+  // let child = todoList.childNodes;
+  let child = todoList.firstElementChild;
+  // console.log(child[3].className);
+  // console.log(todoList.id);
+  // console.log(inputSchedul.id);
   for (let i = 0; i < toDos.length; i++) {
     console.log(toDos[i].date);
     if (toDos[i].date === todoList.id && todoList.id === inputSchedul.id) {
       todoList.classList.remove(HIDDEN_CLASSNAME);
+      child.classList.remove(HIDDEN_CLASSNAME);
       break;
     } else {
       todoList.classList.add(HIDDEN_CLASSNAME);
@@ -70,7 +75,11 @@ function deleteTodo(event) {
 }
 
 function postponeTodo(event) {
+  const li = event.target.parentElement.parentNode;
   const button3 = event.target;
+  li.className = Number(button3.className) + 1;
+  li.classList.add(HIDDEN_CLASSNAME);
+
   console.log(button3.id);
   console.log(toDos[0].id);
   for (let i = 0; i < toDos.length; i++) {
@@ -85,6 +94,7 @@ function postponeTodo(event) {
 function paintToDo(newTodo) {
   const li = document.createElement("li");
   li.id = newTodo.id;
+  li.className = newTodo.date;
   const button1 = document.createElement("button");
   button1.innerText = "☐";
   button1.addEventListener("click", change);
