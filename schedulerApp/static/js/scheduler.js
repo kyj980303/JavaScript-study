@@ -2,7 +2,6 @@ const todoForm = document.querySelector(".inputSchedul .todo-form");
 const todoInput = document.querySelector(".inputSchedul .todo-form input");
 const todoList = document.querySelector(".todo-list");
 const todoListLi = document.querySelector(".todo-list li");
-const inputSchedul = document.querySelector(".inputSchedul");
 
 const SCHEDULER_KEY = "schedul";
 const HIDDEN_CLASSNAME = "hide";
@@ -11,7 +10,6 @@ let keyValue =
   date.getFullYear() + ("0" + (date.getMonth() + 1)).slice(-2) + day;
 
 todoList.id = keyValue;
-inputSchedul.id = keyValue;
 
 let toDos = [];
 function saveToDos() {
@@ -42,7 +40,12 @@ function paintToDo(newTodo) {
   li.id = newTodo.id;
   li.className = newTodo.date;
   const button1 = document.createElement("button");
-  button1.innerText = "☐";
+  button1.className = newTodo.id;
+  if (newTodo.state === false) {
+    button1.innerText = "☐";
+  } else {
+    button1.innerText = "✅";
+  }
   button1.addEventListener("click", change);
   const p = document.createElement("p");
   p.innerText = newTodo.work;
@@ -86,10 +89,16 @@ function paintToDo(newTodo) {
 
 function change(event) {
   const button1 = event.target;
-  if (button1.innerText === "☐") {
-    button1.innerText = "✅";
-  } else {
-    button1.innerText = "☐";
+  for (let i = 0; i < toDos.length; i++) {
+    if (Number(button1.className) === toDos[i].id) {
+      if (button1.innerText === "☐") {
+        button1.innerText = "✅";
+        toDos[i].state = true;
+      } else {
+        button1.innerText = "☐";
+        toDos[i].state = false;
+      }
+    }
   }
   saveToDos();
 }
