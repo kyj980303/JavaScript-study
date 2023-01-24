@@ -20,28 +20,6 @@ function saveToDos() {
 
 todoForm.addEventListener("submit", handleToDoSubmit);
 
-// 해당 날짜의 투두리스트에 아이디값 전달
-function submitId(id) {
-  inputSchedul.id = id;
-  todoList.id = id;
-  // let child = todoList.childNodes;
-  let child = todoList.firstElementChild;
-  // console.log(child[3].className);
-  // console.log(todoList.id);
-  // console.log(inputSchedul.id);
-  for (let i = 0; i < toDos.length; i++) {
-    console.log(toDos[i].date);
-    if (toDos[i].date === todoList.id && todoList.id === inputSchedul.id) {
-      todoList.classList.remove(HIDDEN_CLASSNAME);
-      child.classList.remove(HIDDEN_CLASSNAME);
-      break;
-    } else {
-      todoList.classList.add(HIDDEN_CLASSNAME);
-      break;
-    }
-  }
-}
-
 function handleToDoSubmit(evnet) {
   evnet.preventDefault();
   const newTodo = todoInput.value;
@@ -50,45 +28,13 @@ function handleToDoSubmit(evnet) {
   const newTodoObj = {
     work: newTodo,
     id: Date.now(),
-    date: keyValue,
+    date: todoList.id,
+    state: false,
   };
 
   toDos.push(newTodoObj);
   paintToDo(newTodoObj);
   saveToDos();
-}
-
-function change(event) {
-  const button1 = event.target;
-  if (button1.innerText === "☐") {
-    button1.innerText = "✅";
-  } else {
-    button1.innerText = "☐";
-  }
-}
-
-function deleteTodo(event) {
-  const li = event.target.parentElement.parentNode;
-  li.remove();
-  toDos = toDos.filter((todo) => todo.id !== Number(li.id));
-  saveToDos();
-}
-
-function postponeTodo(event) {
-  const li = event.target.parentElement.parentNode;
-  const button3 = event.target;
-  li.className = Number(button3.className) + 1;
-  li.classList.add(HIDDEN_CLASSNAME);
-
-  console.log(button3.id);
-  console.log(toDos[0].id);
-  for (let i = 0; i < toDos.length; i++) {
-    if (Number(button3.id) === toDos[i].id) {
-      toDos[i].date = String(Number(toDos[i].date) + 1);
-      todoList.id = toDos[i].date;
-      saveToDos();
-    }
-  }
 }
 
 function paintToDo(newTodo) {
@@ -122,10 +68,99 @@ function paintToDo(newTodo) {
   div3.appendChild(button3);
   div3.appendChild(button2);
   todoList.appendChild(li);
+  // ul태그의 자식 li태그들을 전부 뽑는다.
+  let child = todoList.childNodes;
+  for (let i = 0; i < child.length; i++) {
+    let classN = child[i];
+    // li태그의 클래스명에 "hide"라는 문자가 추가되면
+    // 아래 비교에서 무조건 false가 출력되기 때문에
+    // 문자열에서 숫자만 뽑아내서 비교한다.
+    var regex = /[^0-9]/g;
+    var result = classN.className.replace(regex, "");
+
+    // ul태그의 아이디값(현재 클릭한 날짜)과 li태그(투두리스트가 등록된 날짜)의 클래스값이 같으면
+    // 즉, 현재 클릭한 날짜와 투두리스트가 등록된 날짜가 같으면
+    if (result === todoList.id) {
+      // li태그를 보여준다.
+      classN.classList.remove(HIDDEN_CLASSNAME);
+    }
+    // ul태그의 아이디값(현재 클릭한 날짜)과 li태그(투두리스트가 등록된 날짜)의 클래스값이 다르면
+    // 즉, 현재 클릭한 날짜와 투두리스트가 등록된 날짜가 다르면
+    else {
+      // li태그를 가린다.
+      classN.classList.add(HIDDEN_CLASSNAME);
+    }
+  }
+}
+
+function change(event) {
+  const button1 = event.target;
+  if (button1.innerText === "☐") {
+    button1.innerText = "✅";
+  } else {
+    button1.innerText = "☐";
+  }
+  saveToDos();
+}
+
+function deleteTodo(event) {
+  const li = event.target.parentElement.parentNode;
+  li.remove();
+  toDos = toDos.filter((todo) => todo.id !== Number(li.id));
+  saveToDos();
+}
+
+function postponeTodo(event) {
+  const li = event.target.parentElement.parentNode;
+  console.log(li);
+  const button3 = event.target;
+  button3.className = Number(button3.className) + 1;
+  li.className = Number(button3.className);
+  li.classList.add(HIDDEN_CLASSNAME);
+
+  // console.log(button3.id);
+  // console.log(toDos[0].id);
+  for (let i = 0; i < toDos.length; i++) {
+    if (Number(button3.id) === toDos[i].id) {
+      toDos[i].date = String(Number(toDos[i].date) + 1);
+      todoList.id = toDos[i].date;
+      saveToDos();
+    }
+  }
+}
+
+// 날짜별로 각각의 투두리스트를 보여주는 코드
+function paintTodayTodo(id) {
+  // 해당 날짜의 투두리스트에 아이디값 전달
+  todoList.id = id;
+
+  // ul태그의 자식 li태그들을 전부 뽑는다.
+  let child = todoList.childNodes;
+  for (let i = 0; i < child.length; i++) {
+    let classN = child[i];
+    // li태그의 클래스명에 "hide"라는 문자가 추가되면
+    // 아래 비교에서 무조건 false가 출력되기 때문에
+    // 문자열에서 숫자만 뽑아내서 비교한다.
+    var regex = /[^0-9]/g;
+    var result = classN.className.replace(regex, "");
+
+    // ul태그의 아이디값(현재 클릭한 날짜)과 li태그(투두리스트가 등록된 날짜)의 클래스값이 같으면
+    // 즉, 현재 클릭한 날짜와 투두리스트가 등록된 날짜가 같으면
+    if (result === todoList.id) {
+      // li태그를 보여준다.
+      classN.classList.remove(HIDDEN_CLASSNAME);
+    }
+    // ul태그의 아이디값(현재 클릭한 날짜)과 li태그(투두리스트가 등록된 날짜)의 클래스값이 다르면
+    // 즉, 현재 클릭한 날짜와 투두리스트가 등록된 날짜가 다르면
+    else {
+      // li태그를 가린다.
+      classN.classList.add(HIDDEN_CLASSNAME);
+    }
+  }
 }
 
 const savedToDos = localStorage.getItem(SCHEDULER_KEY);
-console.log(savedToDos);
+// console.log(savedToDos);
 
 if (savedToDos !== null) {
   // localStorage에 들어있는 문자열을 데이터로 이용하기 위해 배열로 만들어 주어야한다.

@@ -115,7 +115,7 @@ const schedulToday = document.querySelector(".scheduler .today");
 // 오늘 날짜를 클릭했을 때 아이디값을 받아와 오늘 월과 날짜를 출력
 function onToday(id) {
   // console.log(id);
-  submitId(id);
+  paintTodayTodo(id);
   month = String(id).slice(4, 6);
   let date = String(id).slice(6, 9);
   let m = monthToString(month);
@@ -127,7 +127,7 @@ function onToday(id) {
 // 아무 날짜를 클릭했을 때 아이디값을 받아와 해당 월과 날짜를 출력
 let color = "white";
 function onClickDay(id) {
-  submitId(id);
+  paintTodayTodo(id);
   month = String(id).slice(4, 6);
   let date = String(id).slice(6, 9);
   let m = monthToString(month);
