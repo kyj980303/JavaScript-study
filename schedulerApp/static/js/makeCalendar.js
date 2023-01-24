@@ -112,6 +112,8 @@ function monthToString(month) {
 }
 
 const schedulToday = document.querySelector(".scheduler .today");
+let m = monthToString(month);
+schedulToday.innerText = `${m}. ${day}`;
 // 오늘 날짜를 클릭했을 때 아이디값을 받아와 오늘 월과 날짜를 출력
 function onToday(id) {
   // console.log(id);

@@ -110,9 +110,9 @@ function deleteTodo(event) {
   saveToDos();
 }
 
+// 미루기 기능
 function postponeTodo(event) {
   const li = event.target.parentElement.parentNode;
-  console.log(li);
   const button3 = event.target;
   button3.className = Number(button3.className) + 1;
   li.className = Number(button3.className);
@@ -141,8 +141,8 @@ function paintTodayTodo(id) {
     // li태그의 클래스명에 "hide"라는 문자가 추가되면
     // 아래 비교에서 무조건 false가 출력되기 때문에
     // 문자열에서 숫자만 뽑아내서 비교한다.
-    var regex = /[^0-9]/g;
-    var result = classN.className.replace(regex, "");
+    let regex = /[^0-9]/g;
+    let result = classN.className.replace(regex, "");
 
     // ul태그의 아이디값(현재 클릭한 날짜)과 li태그(투두리스트가 등록된 날짜)의 클래스값이 같으면
     // 즉, 현재 클릭한 날짜와 투두리스트가 등록된 날짜가 같으면
