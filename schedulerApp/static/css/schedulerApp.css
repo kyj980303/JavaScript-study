@@ -1,13 +1,13 @@
 /* 달력 */
 .dateHead div {
-  background: #82aae3;
+  background: rgb(94, 124, 179);
   color: #fff;
   text-align: center;
   border-radius: 5px;
 }
 .dateHead div:first-of-type,
 .dateHead div:last-of-type {
-  background-color: #ffd574;
+  background-color: #f0c35b;
 }
 .grid {
   display: grid;
@@ -124,7 +124,6 @@ button {
 .dateBoard .toColor {
   transition: all 0.3s;
   background-color: rgba(97, 141, 234, 0.278);
-  border: 1px solid rgb(155, 207, 255);
 }
 .inputSchedul {
   width: 100%;
@@ -223,5 +222,9 @@ button {
   .todolist:nth-of-type(3)
   button:nth-of-type(1):hover {
   color: rgb(0, 255, 183);
+  transition: all 0.3s;
+}
+.click {
+  background-color: rgb(94, 124, 179);
   transition: all 0.3s;
 }

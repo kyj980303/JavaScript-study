@@ -67,6 +67,20 @@ const makeCalendar = (date) => {
 
   let schedulToday = document.querySelector(".scheduler .today");
   schedulToday.innerText = `${currentMonth}. `;
+
+  // 해당 날짜 클릭시 배경색 변경
+  const nonClick = document.querySelectorAll(".dayNum");
+  nonClick.forEach((e) => {
+    e.addEventListener("click", handleClick);
+  });
+  function handleClick(event) {
+    // div에서 모든 "click" 클래스 제거
+    nonClick.forEach((e) => {
+      e.classList.remove("click");
+    });
+    // 클릭한 div만 "click"클래스 추가
+    event.target.classList.add("click");
+  }
 };
 
 const date = new Date();
@@ -112,6 +126,8 @@ function monthToString(month) {
 }
 
 const schedulToday = document.querySelector(".scheduler .today");
+
+// 새로고침했을 때 현재 월,일 표시
 let m = monthToString(month);
 schedulToday.innerText = `${m}. ${day}`;
 // 오늘 날짜를 클릭했을 때 아이디값을 받아와 오늘 월과 날짜를 출력
@@ -122,29 +138,19 @@ function onToday(id) {
   let date = String(id).slice(6, 9);
   let m = monthToString(month);
   schedulToday.innerText = `${m}. ${date}`;
+
+  // 다른 날짜 클릭한 후 현재 날짜 클릭시 다른 날짜 배경색 제거
+  const nonClick = document.querySelectorAll(".dayNum");
+  nonClick.forEach((e) => {
+    e.classList.remove("click");
+  });
 }
 
-// 날짜 클릭시 해당 날짜 배경색 바꾸기 위함
-
-// 아무 날짜를 클릭했을 때 아이디값을 받아와 해당 월과 날짜를 출력
-let color = "white";
+// 원하는 날짜 클릭했을 때 해당 아이디값을 받아와 월과 날짜를 출력
 function onClickDay(id) {
   paintTodayTodo(id);
   month = String(id).slice(4, 6);
   let date = String(id).slice(6, 9);
   let m = monthToString(month);
   schedulToday.innerText = `${m}. ${date}`;
-
-  // 해당 날짜 클릭시 배경색 변경
-  const obj = document.getElementById(id);
-
-  if (color === "white") {
-    obj.style.background = "#DBE2EF";
-    color = "#DBE2EF";
-    console.log(color);
-  } else {
-    obj.style.background = "white";
-    color = "white";
-    console.log(color);
-  }
 }
