@@ -116,7 +116,6 @@ function monthToString(month) {
     "Dec",
   ];
 
-  // console.log(Number(month));
   for (let i = 1; i < 13; i++) {
     if (Number(month) === i) {
       month = mon[i - 1];
@@ -132,7 +131,6 @@ let m = monthToString(month);
 schedulToday.innerText = `${m}. ${day}`;
 // 오늘 날짜를 클릭했을 때 아이디값을 받아와 오늘 월과 날짜를 출력
 function onToday(id) {
-  // console.log(id);
   paintTodayTodo(id);
   month = String(id).slice(4, 6);
   let date = String(id).slice(6, 9);

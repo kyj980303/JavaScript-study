@@ -152,7 +152,8 @@ button {
 }
 .inputSchedul .todo-list {
   width: 100%;
-  height: auto;
+  height: 500px;
+  overflow-y: scroll;
 }
 .inputSchedul .todo-list::after {
   content: "";
