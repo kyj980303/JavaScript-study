@@ -15,6 +15,7 @@ ul li {
 }
 .ProductListPage h1 {
   margin-bottom: 40px;
+  margin-left: 1%;
 }
 .ProductListPage ul {
   width: 100%;
@@ -28,7 +29,7 @@ ul li {
 .ProductListPage ul .Product {
   width: 290px;
   padding: 16px;
-  margin-right: 1.8%;
+  margin: 0 1%;
   margin-bottom: 20px;
   float: left;
   background-color: #fff;
@@ -48,4 +49,79 @@ ul li {
 }
 .ProductListPage ul .Product .Product__info div:nth-of-type(2) {
   text-align: right;
+}
+.ProductDetailPage {
+  padding: 50px;
+}
+.ProductDetailPage h1 {
+  margin-bottom: 40px;
+  margin-left: 1%;
+}
+.ProductDetail {
+  background-color: #fff;
+  width: 100%;
+  height: 650px;
+  padding-bottom: 20px;
+}
+.ProductDetail img {
+  width: 35%;
+  height: auto;
+  padding: 20px;
+  object-fit: contain;
+  margin: 3.5% 8%;
+}
+.ProductDetail .ProductDetail__info {
+  float: right;
+  width: 40%;
+  height: auto;
+  border: 1px solid gray;
+  padding: 2% 1%;
+  margin: 2%;
+}
+.ProductDetail .ProductDetail__info h2 {
+  margin-bottom: 30px;
+}
+.ProductDetail .ProductDetail__info .ProductDetail__price {
+  text-align: right;
+  margin-bottom: 10px;
+}
+.ProductDetail .ProductDetail__info select {
+  width: 100%;
+  margin-bottom: 200px;
+}
+.ProductDetail__selectedOptions {
+  border: 1px solid gray;
+  padding: 2%;
+}
+.ProductDetail__selectedOptions ul {
+  width: 100%;
+  height: 80px;
+}
+.ProductDetail__selectedOptions ul li {
+  margin-bottom: 10px;
+}
+.ProductDetail__selectedOptions h3 {
+  margin-bottom: 20px;
+}
+.ProductDetail__selectedOptions input {
+  width: 30px;
+  float: right;
+}
+.ProductDetail__totalPrice {
+  font-size: 30px;
+  text-align: right;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.OrderButton {
+  width: 100%;
+  height: 35px;
+  background-color: rgb(111, 132, 237);
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+}
+.OrderButton:hover {
+  transition: all 0.3s;
+  background-color: rgb(84, 100, 181);
 }

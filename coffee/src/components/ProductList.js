@@ -6,11 +6,6 @@ export default function ProductList({ $target, initialState }) {
 
   this.state = initialState;
 
-  this.setState = (newState) => {
-    this.state = newState;
-    this.render();
-  };
-
   $productList.addEventListener("click", (e) => {
     const $li = e.target.closest("li");
     const { productId } = $li.dataset;

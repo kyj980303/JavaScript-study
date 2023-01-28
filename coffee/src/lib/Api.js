@@ -4,7 +4,6 @@ export const dummyRequest = async (url, option = {}) => {
   if (url === "/products") {
     const response = await fetch("../../data/product-list.json");
     const json = await response.json();
-    console.log(json);
     return json;
   } else if (url.indexOf("/products/") === 0) {
     const [, , id] = url.split("/");

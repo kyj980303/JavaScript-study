@@ -7,6 +7,6 @@ export const init = (onRouteChange) => {
 };
 
 export const routeChange = (url, params) => {
-  history.pushState(null, null, url);
+  history.pushState(null, null, url); // 새로고침없이 주소를 바꿔줌
   window.dispatchEvent(new CustomEvent(ROUTE_CHANGE_EVENT, params));
 };
