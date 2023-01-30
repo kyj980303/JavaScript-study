@@ -5,6 +5,7 @@ export default function ProductDetail({ $target, initialState }) {
   $component.className = "ProductDetail";
   $target.appendChild($component);
   console.log(initialState);
+
   this.state = initialState;
 
   this.setState = (newState) => {
@@ -12,6 +13,7 @@ export default function ProductDetail({ $target, initialState }) {
     this.render();
   };
 
+  // 선택 값이 변경된 직후에 이벤트가 발생
   $component.addEventListener("change", (e) => {
     if (e.target.tagName === "SELECT") {
       const selectedOptionId = parseInt(e.target.value);
@@ -34,6 +36,7 @@ export default function ProductDetail({ $target, initialState }) {
             quantity: 1,
           },
         ];
+
         this.setState({
           ...this.state,
           selectedOptions: newSelectedOptions,
